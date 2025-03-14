@@ -1,0 +1,29 @@
+import java.util.Scanner;
+public class Main
+{
+	public static void main(String[] args) {
+		Scanner scanner=new Scanner(System.in);
+		System.out.println("Ciao oggi è il tuo nuovo giorno alla scuderia.\nQuesta app ti aiuterà a inserire i nomi dei cavalli e le loro velocità massime al galoppo (20-70 km/h.");
+		System.out.println("Inserisci il numero dei cavalli all'interno della scuderia: ");//presento il problema 
+		int lenght=scanner.nextInt();//inserisco la lungheza dell'array
+		int array[]=new int[lenght];//dichiaro l'array
+		for(int i=0;i<lenght;i++){//faccio il ciclo dove c'è il do-while dove controllo se la velocità è compresa nell'intervallo 
+		    do{
+		    System.out.println("Questo è il cavallo "+(i+1)+": ");
+		    array[i]=scanner.nextInt();
+		    if(array[i]<20||array[i]>70){//faccio l'if è stampo se non è nell'intervallo
+		        System.out.println("Inserisci un numero compreso tra 20 e 70.");
+		    }
+		    }while(array[i]<20 || array[i]>70);
+		}
+		int massimo=array[0];//inizializzo il primo elemento dell'array come massimo
+		int numeroMassimo=0;//inizializzo la poszione del numero massimo
+		for(int i=0;i<lenght;i++){
+		    if(array[i]>=massimo){//faccio l'if dove controllo se l'elemento dell'array alla posizione i è maggiore del numero massimo
+		        massimo=array[i];//attribuisco l'elemento arrayi al massimo
+		        numeroMassimo=i;//attribuisco  la posizione all'i
+		    }
+		}
+		System.out.println("Il cavallo "+ (numeroMassimo+1)+" è il più veloce di tutti e ha una velocità di: "+massimo+"km/h");//stampo il cavallo massimo
+	}
+}
