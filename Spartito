@@ -1,0 +1,41 @@
+import java.util.Scanner;
+public class Main
+{
+    public static void Stampa(int posizione){//questa è la funzione per stampare le note nella posizione scelta (1 o 2)
+        switch(posizione){//utilizzo lo switch 
+            case 1:
+                System.out.println("In posizione 1 c'è la nota LA.");
+                break;
+            case 2:
+                System.out.println("In posizione 2 c'è la nota SI.");
+                break;
+            default:
+                System.out.println("Non è un numero consentito.");//il default dice che se l'utente inserisce un numero diverso tra 1 e 2 scrive che non è consentito
+                break;
+        }
+    }
+	public static void main(String[] args) {
+		Scanner scanner=new Scanner(System.in);
+		System.out.println("******La tua hit******");
+		System.out.println("Ho creato un brano per te");
+		System.out.println("1-Per sapere tutte le note");
+		System.out.println("2-Per saperne una in particolare");
+		int scelta;
+		do{
+		    System.out.println("Inserisci o 1 o 2: ");//faccio il do-While dove controllo se la scelta è 1 o 2 altrimenti ripete
+		    scelta=scanner.nextInt();
+		}while(scelta!=1 && scelta!=2);
+		switch(scelta){//faccio ancora lo switch dove se la scelta è 1 stampo tutte le note se è 2 vado a prendere la funzione
+		    case 1:
+		        System.out.println("LA SI DO RE MI FA SOL LA SI DO");
+		        break;
+		    case 2:
+		        System.out.println("Che posizione vuoi sapere? ");
+		        int posizione=scanner.nextInt();
+		        Stampa(posizione);//chiamo la funzione(essendo void non posso fare il return ma stampa i valori)
+		        break;
+		        
+		}
+		
+	}
+}
