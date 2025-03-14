@@ -1,0 +1,26 @@
+import java.util.Scanner;
+public class Main
+{
+	public static void main(String[] args) {
+		Scanner scanner=new Scanner(System.in);
+		System.out.println("Inserisci la grandezza del tuo array: ");
+		int lenght=scanner.nextInt();
+		int array[]=new int[lenght];
+		for(int i=0;i<lenght;i++){
+		    System.out.println("Inserisci un numero: ");
+		    array[i]=scanner.nextInt();
+		}
+		int minimo=array[0];
+		int massimo=array[0];
+		for(int i=0;i<lenght;i++){
+		    if(minimo>array[i]){
+		        minimo=array[i];
+		    }
+		    else if(array[i]>massimo){
+		        massimo=array[i];
+		    }
+		    
+		}
+		System.out.println("Il massimo è: "+massimo+" il minimo è: "+minimo);
+	}
+}
