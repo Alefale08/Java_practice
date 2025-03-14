@@ -1,0 +1,20 @@
+import java.util.Scanner; //importo la libreria
+public class Main
+{
+	public static void main(String[] args) {
+		Scanner scanner= new Scanner(System.in); //dichiarazione dell'input
+		
+		System.out.println("Inserisci un numero: ");
+		int n = scanner.nextInt();//dichiaro le variabili
+		int i=1;
+		int cont=0;
+		//faccio il ciclo
+		while(i<1000){
+		    i=i*2;
+		    cont=cont+1;
+		    if(i==n)
+		        break;
+		}
+		System.out.println("Il logaritmo è: "+cont);
+	}
+}
