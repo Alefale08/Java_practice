@@ -1,0 +1,35 @@
+import java.util.Scanner;
+public class Main
+{
+    public static int Input(){
+        Scanner scanner=new Scanner(System.in);
+        int numero;
+        do{
+            System.out.println("Inserisci un numero: ");
+            numero=scanner.nextInt();
+            if(numero<0){
+                System.out.println("Devi inserire un numero maggiore di 0");
+            }
+        }while(numero<0);
+        return numero;
+    }
+    public static void Sostituzione(int[] array){
+        for(int i=0;i<5;i++){
+            array[i]=2;
+        }
+    }
+    public static void Stampa(int[] array){
+        for(int i=0;i<5;i++){
+            System.out.println(array[i]);
+        }
+    }
+	public static void main(String[] args) {
+		int array[]=new int[5];
+		for(int i=0;i<5;i++){
+		    array[i]=Input();
+		}
+		Sostituzione(array);
+		Stampa(array);
+		
+	}
+}
