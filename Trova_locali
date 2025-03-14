@@ -1,0 +1,20 @@
+import java.util.Scanner;
+public class Main
+{
+	public static void main(String[] args) {
+		Scanner scanner=new Scanner(System.in);
+		System.out.println("Inserisci una stringa: ");
+		String stringa=scanner.nextLine();
+		String stringa_downcase=stringa.toLowerCase();
+		int lenght=stringa.length();
+		System.out.println("La lunghezza della stringa è: "+lenght);
+		int somma_vocali=0;
+		for(int i=0;i<lenght;i++){
+		    char carattere=stringa_downcase.charAt(i);
+		    if(carattere=='a' || carattere=='e' || carattere=='i' || carattere=='o' || carattere=='u' ){
+		        somma_vocali=somma_vocali+1;
+		    }
+		}
+		System.out.println("Ci sono "+somma_vocali+" vocali.");
+	}
+}
