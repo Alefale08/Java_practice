@@ -1,0 +1,53 @@
+import java.util.Scanner;
+public class Main
+{
+    public static int Input(){
+        Scanner scanner=new Scanner(System.in);
+        int temperatura;
+        do{
+            System.out.println("Inserisci la temperatura: ");
+            temperatura=scanner.nextInt();
+            if(temperatura<-20 || temperatura>50){
+                System.out.println("ERRORE ERRORE ERRORE");
+            }
+        }while(temperatura<-20 || temperatura>50);
+        return temperatura;
+    }
+    public static int media(int somma){
+        int media=somma/10;
+        return media;
+    }
+	public static void main(String[] args) {
+		int temperature[]=new int[10];
+		int num_max=-20;
+		int num_min=50;
+		int somma=0;
+		int somma_giorni_sopramedia=0;
+		int ondata_di_calore=0;
+		for(int i=0;i<10;i++){
+		    temperature[i]=Input();
+		    somma=somma+temperature[i];
+		    if(temperature[i]>num_max){
+		        num_max=temperature[i];
+		    }
+		    if(temperature[i]<num_min){
+		        num_min=temperature[i];
+		    }
+		    if(temperature[i]>media(somma)){
+		        somma_giorni_sopramedia=somma_giorni_sopramedia+1;
+		    }
+		    if(temperature[i]>30){
+		        ondata_di_calore=ondata_di_calore+1;
+		    }
+		}
+		System.out.println("La media è: "+media(somma));
+		System.out.println("Il numero massimo è: "+num_max);
+	    System.out.println("Il numero minimo è: "+num_min);
+	    System.out.println("Il numero di giorni in cui la temperatura è stata maggiore alla media è: "+somma_giorni_sopramedia);
+	    if(ondata_di_calore>5){
+	        System.out.println(" Attenzione. C'è stata un'ondata di calore");
+	    }
+
+
+	}
+}
