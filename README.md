@@ -1,0 +1,1 @@
+In this repository called Java_practice, I do exercises in Java to practice the programming language I learned in 3rd year of high school.
