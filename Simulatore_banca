@@ -1,0 +1,47 @@
+import java.util.Scanner;
+public class Main
+{
+    public static void Intro(){
+        System.out.println("Benvenuto nella banca.");
+		    System.out.println("Che operazione vuoi fare?");
+		    System.out.println("1-Prelevare");
+		    System.out.println("2-Depositare");
+		    System.out.println("3-Mostra saldo");
+		    System.out.println("4-Esci");
+    }
+	public static void main(String[] args) {
+	    Scanner scanner=new Scanner(System.in);
+	    int scelta;
+	    int saldo=100;
+	    int cifra;
+		do{
+		    Intro();
+		    scelta=scanner.nextInt();
+		    switch(scelta){
+		        case 1:
+		            if(saldo==0){
+		                System.out.println("Non hai i soldi per poter prelevare.");
+		                break;
+		            } else{
+		            do{
+		                System.out.println("Inserisci quanto vuoi prelevare: ");
+		                cifra=scanner.nextInt();
+		            }while(cifra>saldo);
+		            saldo=saldo-cifra;
+		            if(saldo<20){
+		                System.out.println("Il tuo saldo è minore di 20 euro ti convene depositare altri soldi.");
+		            }
+		            break;
+		            }
+		        case 2:
+		           System.out.println("Inserisci quanto vuoi depositare: ");
+		          cifra=scanner.nextInt();
+		          saldo=saldo+cifra;
+		          break;
+		        case 3:
+		            System.out.println(saldo);
+		            break;
+		    }
+		}while(scelta!=4);
+	}
+}
