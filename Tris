@@ -1,85 +1,133 @@
 import java.util.Scanner;
-
-public class Main {
-    
-    // Metodo per controllare la vittoria
-    public static boolean controllovincita(char[][] reticolo, char player) {
-        for (int i = 0; i < 3; i++) {
-            if ((reticolo[i][0] == player && reticolo[i][1] == player && reticolo[i][2] == player) || // Riga
-                (reticolo[0][i] == player && reticolo[1][i] == player && reticolo[2][i] == player)) { // Colonna
-                return true;
+import java.util.Random;
+class Main {
+    public static char matrix[][]=new char[3][3];
+    public static void Inizializzazione(){
+        for(int i=0;i<3;i++){
+            for(int j=0;j<3;j++){
+                matrix[i][j]=' ';
             }
         }
-
-        // Controllo diagonali
-        if ((reticolo[0][0] == player && reticolo[1][1] == player && reticolo[2][2] == player) || // Diagonale principale
-            (reticolo[0][2] == player && reticolo[1][1] == player && reticolo[2][0] == player)) { // Diagonale secondaria
+    }
+    public static void Stampa_matrix(){
+        for(int i=0;i<3;i++){
+            for(int j=0;j<3;j++){
+                System.out.print(matrix[i][j]+" |");
+            }
+            System.out.println(" ");
+        }
+    }
+    public static void Mossa_giocatore(){
+        Scanner scanner=new Scanner(System.in);
+        int riga;
+        int colonna;
+        do{
+            System.out.println("Inserisci la riga: ");
+            riga=scanner.nextInt();
+            System.out.println("Inserisci la colonna: ");
+            colonna=scanner.nextInt();
+        }while(matrix[riga-1][colonna-1]=='X'||matrix[riga-1][colonna-1]=='O');
+        matrix[riga-1][colonna-1]='X';
+        
+    }
+    public static void Mossa_computer(){
+        Random random= new Random();
+        int riga;
+        int colonna;
+        do{
+            riga=random.nextInt(3);
+            colonna=random.nextInt(3);
+        }while(matrix[riga][colonna]=='X'||matrix[riga][colonna]=='O');
+        matrix[riga][colonna]='O';
+    }
+    public static boolean Check_diagonali(){
+        if(matrix[0][0]=='X'&&matrix[1][1]=='X'&&matrix[2][2]=='X'){
+            System.out.print("Hai vinto!!!");
             return true;
         }
-
+        else if(matrix[0][0]=='O'&&matrix[1][1]=='O'&&matrix[2][2]=='O'){
+            System.out.print("Il computer ha vinto!!!");
+            return true;
+        }
+        else if(matrix[2][0]=='O'&&matrix[1][1]=='O'&&matrix[0][2]=='O'){
+            System.out.print("Il computer ha vinto!!!");
+            return true;
+        }
+        else if(matrix[2][0]=='X'&&matrix[1][1]=='X'&&matrix[0][2]=='X'){
+            System.out.print("Hai vinto!!!");
+            return true;
+        }
         return false;
     }
-
-    public static int avversario_colonna() {
-        double doublecolonna = Math.random() * 3;
-        int colonna = (int) doublecolonna;
-        return colonna;
-    }
-
-    public static int avversario_riga() {
-        double doubleriga = Math.random() * 3;
-        int riga = (int) doubleriga;
-        return riga;
-    }
-
+    public static boolean Check_orizzontali(){
+        if(matrix[0][0]=='X'&&matrix[0][1]=='X'&&matrix[0][2]=='X'){
+            System.out.println("Il giocatore ha vinto!!!");
+            return true;
+        }
+        else if(matrix[0][0]=='O'&&matrix[0][1]=='O'&&matrix[0][2]=='O'){
+            System.out.println("Il computer ha vinto!!!");
+            return true;
+        }
+        else if(matrix[1][0]=='X'&&matrix[1][1]=='X'&&matrix[1][2]=='X'){
+            System.out.println("Il giocatore ha vinto!!!");
+            return true;
+        }
+        else if(matrix[1][0]=='O'&&matrix[1][1]=='O'&&matrix[1][2]=='O'){
+            System.out.println("Il computer ha vinto!!!");
+            return true;
+        }
+        else if(matrix[2][0]=='X'&&matrix[2][1]=='X'&&matrix[2][2]=='X'){
+            System.out.println("Il giocatore ha vinto!!!");
+            return true;
+        }
+        else if(matrix[2][0]=='O'&&matrix[2][1]=='O'&&matrix[2][2]=='O'){
+            System.out.println("Il computer ha vinto!!!");
+            return true;
+        }
+        return false;
+        }
+    public static boolean Check_verticali(){
+        if(matrix[0][0]=='X'&&matrix[1][0]=='X'&&matrix[2][0]=='X'){
+            System.out.println("Il giocatore ha vinto!!!");
+            return true;
+        }
+        else if(matrix[0][0]=='O'&&matrix[1][0]=='O'&&matrix[2][0]=='O'){
+            System.out.println("Il computer ha vinto!!!");
+            return true;
+        }
+        else if(matrix[0][1]=='X'&&matrix[1][1]=='X'&&matrix[2][1]=='X'){
+            System.out.println("Il giocatore ha vinto!!!");
+            return true;
+        }
+        else if(matrix[0][1]=='O'&&matrix[1][1]=='O'&&matrix[2][1]=='O'){
+            System.out.println("Il computer ha vinto!!!");
+            return true;
+        }
+        else if(matrix[0][2]=='X'&&matrix[1][2]=='X'&&matrix[2][2]=='X'){
+            System.out.println("Il giocatore ha vinto!!!");
+            return true;
+        }
+        else if(matrix[0][2]=='O'&&matrix[1][2]=='O'&&matrix[2][2]=='O'){
+            System.out.println("Il computer ha vinto!!!");
+            return true;
+        }
+        return false;
+        }
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Benvenuto in Tris: ");
-        char reticolo[][] = new char[3][3];
-
-        do {
-            int riga;
-            int colonna;
-            do {
-                do{
-                System.out.println("Inserisci la colonna: ");
-                colonna = scanner.nextInt();
-                }while(colonna<1 || colonna>3);
-                do{
-                System.out.println("Inserisci la riga: ");
-                riga = scanner.nextInt();
-                }while(riga<1 || riga>3);
-            } while (reticolo[riga - 1][colonna - 1] == 'x' || reticolo[riga - 1][colonna - 1] == 'o');
-
-            reticolo[riga - 1][colonna - 1] = 'x';
-
-            // Controllo se il giocatore ha vinto
-            if (controllovincita(reticolo, 'x')) {
-                System.out.println("Hai vinto!");
-                break;
-            }
-
-            int colonna_avversario;
-            int riga_avversario;
-            do {
-                colonna_avversario = avversario_colonna();
-                riga_avversario = avversario_riga();
-            } while (reticolo[colonna_avversario][riga_avversario] == 'x' || reticolo[colonna_avversario][riga_avversario] == 'o');
-
-            reticolo[colonna_avversario][riga_avversario] = 'o';
-
-            // Controllo se l'avversario ha vinto
-            if (controllovincita(reticolo, 'o')) {
-                System.out.println("Hai perso! L'avversario ha vinto.");
-                break;
-            }
-
-            for (int i = 0; i < 3; i++) {
-                for (int j = 0; j < 3; j++) {
-                    System.out.print(" |" + reticolo[i][j] + "| ");
-                }
-                System.out.println(" ");
-            }
-        } while (true);
+        Inizializzazione();
+        while(true){
+        Stampa_matrix();
+        Mossa_giocatore();
+        Mossa_computer();
+        if(Check_diagonali()==true){
+            break;
+        }
+        else if(Check_orizzontali()==true){
+            break;
+        }
+        else if(Check_verticali()==true){
+            break;
+        }
+        }
     }
-}
+    }
