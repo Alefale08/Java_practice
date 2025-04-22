@@ -1,1 +1,1 @@
-In this repository called Java_practice, I do exercises in Java to practice the programming language I learned in 3rd year of high school and by myself.
+In this repository called Java_practice, I do exercises in Java to practice the programming language I learned in 3rd year of high school and by myself, also there is a small book created by myself for java beginner learners.
