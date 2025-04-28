@@ -1,0 +1,24 @@
+import java.util.Scanner;
+import java.util.Random;
+public class Main
+{
+	public static void main(String[] args) {
+	    Scanner scanner=new Scanner(System.in);
+	    Random random=new Random();
+	    int scelta;
+	    do{
+	        System.out.println("Generatore di numeri: ");
+	        System.out.println("Inserisci 1 per generare numero e 2 per uscire: ");
+	        scelta=scanner.nextInt();
+	        if(scelta==1){
+	            System.out.println("Fino a che numero vuoi generare?");
+	            int numero=scanner.nextInt();
+	            int randomizzato=random.nextInt(numero);
+	            System.out.println("Il numero è: "+randomizzato);
+	        }
+	        else{
+	            break;
+	        }
+	    }while(scelta==1);
+	}
+}
