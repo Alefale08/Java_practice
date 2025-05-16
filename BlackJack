@@ -1,0 +1,61 @@
+import java.util.Scanner;
+import java.util.Random;
+public class Main
+{
+    public static int estrai_carta(){
+        Random random=new Random();
+        int carta=random.nextInt(10);
+        carta=carta+1;
+        return carta;
+    }
+	public static void main(String[] args) {
+	    Scanner scanner=new Scanner(System.in);
+	    int scelta;
+	    do{
+		int somma_giocatore=0;
+		int somma_computer=0;
+		int scelta_carta;
+		System.out.println("***********BlackJack**********");
+		System.out.println("Vuoi giocare? 1-Si 2-No");
+		scelta=scanner.nextInt();
+		if(scelta==1){
+		somma_giocatore=estrai_carta()+estrai_carta();
+		System.out.println("La tua somma è: "+somma_giocatore);
+		somma_computer=estrai_carta();
+		System.out.println("Il computer ha: "+somma_computer);
+		do{
+		System.out.println("Vuoi carta?");
+		scelta_carta=scanner.nextInt();
+		if(scelta_carta==1){
+		    somma_giocatore=somma_giocatore+estrai_carta();
+		    System.out.println("La tua somma è: "+somma_giocatore);
+		}
+		else{
+		    break;
+		}
+		}while(somma_giocatore<=21 || scelta_carta==2);
+		if(somma_giocatore>21){
+		    System.out.println("Hai sballato.");
+		}
+		else{
+		    do{
+		        somma_computer=somma_computer+estrai_carta();
+		        System.out.println("Il computer: "+somma_computer);
+		    }while(somma_computer<17);
+		 if(somma_computer>21){
+		     System.out.println("Il computer ha sballato.");
+		 }
+		 else{
+		     System.out.println("Il computer: "+somma_computer);
+		 }
+		 if(somma_computer>somma_giocatore){
+		     System.out.println("Il computer ha vinto.");
+		 }
+		 else{
+		     System.out.println("Hai vinto.");
+		 }
+		}
+		}
+	    }while(scelta==1);
+	}
+}
