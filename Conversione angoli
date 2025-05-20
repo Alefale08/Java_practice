@@ -1,0 +1,30 @@
+import java.util.Scanner;
+public class Main
+{
+	public static void main(String[] args) {
+	    Scanner scanner=new Scanner(System.in);
+	    int scelta;
+	    float radianti;
+	    float angolo;
+	    do{
+		System.out.println("***********Convertitore angoli**********");
+		System.out.println("1-Angoli in radianti 2-Radianti in angoli 3-Esci");
+		scelta=scanner.nextInt();
+		if(scelta==1){
+		    System.out.println("Inserisci angolo: ");
+		    angolo=scanner.nextInt();
+		    radianti=(angolo*2)/360;
+		    System.out.println("L'angolo in radinti è: "+radianti+"π");
+		}
+		else if(scelta==2){
+		    System.out.println("Inserisci l'angolo in radianti senza π: ");
+		    radianti=scanner.nextFloat();
+		    angolo=(radianti*360)/2;
+		    System.out.println("L'angolo in gradi è: "+angolo);
+		    }
+		    else{
+		        break;
+		    }
+	    }while(scelta==1 || scelta==2);
+	}
+}
