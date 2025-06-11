@@ -1,0 +1,84 @@
+import java.util.Scanner;
+import java.util.ArrayList;
+public class Main
+{
+    
+    public static void Introduzione(){
+        System.out.println("********Benvenuto*******");
+        System.out.println("1-Per inserire pacco");
+        System.out.println("2-Per eliminare pacco");
+        System.out.println("3-Per vedere tutti i pacchi");
+        System.out.println("4-Per uscire");
+        System.out.println("*************************");
+    }
+    public static String Inserisci_nomi(Scanner scanner){
+        System.out.println("Inserisci nome:");
+		return scanner.nextLine();
+    }
+    public static String ELimina_nomi(Scanner scanner){
+        System.out.println("Inserisci nome:");
+		return scanner.nextLine();
+    }
+	public static void main(String[] args) {
+	    Scanner scanner=new Scanner(System.in);
+		ArrayList<String> poste = new ArrayList<>();
+		ArrayList<String> brt = new ArrayList<>();
+		ArrayList<String> inpost = new ArrayList<>();
+		ArrayList<String> gls = new ArrayList<>();
+		ArrayList<String> amazon = new ArrayList<>();
+		ArrayList<String> altro = new ArrayList<>();
+		while(true){
+		    Introduzione();
+		    int scelta=scanner.nextInt();
+		    if(scelta==1){//Inserisci pacco
+		        System.out.println("Che corriere è?");
+		        System.out.println("1-Poste,2-BRT,3-InPost,4-GLS,5-Amazon,6-Altro");
+		        int corriere=scanner.nextInt();
+		        scanner.nextLine();
+		        String nome = Inserisci_nomi(scanner);
+                switch (corriere) {
+                    case 1 -> poste.add(nome);
+                    case 2 -> brt.add(nome);
+                    case 3 -> inpost.add(nome);
+                    case 4 -> gls.add(nome);
+                    case 5 -> amazon.add(nome);
+                    case 6 -> altro.add(nome);
+                    default -> System.out.println("Corriere non valido.");
+                }
+		}
+		    else if(scelta==2){//Elimina pacco
+		        System.out.println("Che corriere è?");
+		        System.out.println("1-Poste,2-BRT,3-InPost,4-GLS,5-Amazon,6-Altro");
+		        int corriere=scanner.nextInt();
+		        scanner.nextLine();
+		        String nome = Inserisci_nomi(scanner);
+                switch (corriere) {
+                    case 1 -> poste.remove(nome);
+                    case 2 -> brt.remove(nome);
+                    case 3 -> inpost.remove(nome);
+                    case 4 -> gls.remove(nome);
+                    case 5 -> amazon.remove(nome);
+                    case 6 -> altro.remove(nome);
+                    default -> System.out.println("Corriere non valido.");
+		    }
+	}
+	        else if(scelta==3){//Vedi pacchi
+	            System.out.println("Pacchi registrati:");
+                System.out.println("Poste: " + poste);
+                System.out.println("BRT: " + brt);
+                System.out.println("InPost: " + inpost);
+                System.out.println("GLS: " + gls);
+                System.out.println("Amazon: " + amazon);
+                System.out.println("Altro: " + altro);
+	        }
+	        else if(scelta==4){//Uscita dall'app
+	            System.out.println("Uscita in corso...");
+	            break;
+	        }
+	        else{//Errore se si inserisce un'altro numero
+	            System.out.println("Errore");
+	        }
+	        
+}
+}
+}
