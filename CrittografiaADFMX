@@ -1,0 +1,136 @@
+import java.util.Scanner;
+ 
+public class Main {
+ 
+    public static void main(String[] args) {
+ 
+        Scanner scanner = new Scanner(System.in);
+ 
+        char[][] matrix = {
+            {'m', 'a', 'g', 'n', 'e'},
+            {'t', 'r', 'o', 'b', 'c'},
+            {'d', 'f', 'h', 'i', 'k'},
+            {'l', 'p', 'q', 's', 'u'},
+            {'v', 'w', 'x', 'y', 'z'}
+        };
+ 
+        final String LETTERE = "ADFMX";
+        final int[] ordineColonne = {3, 4, 1, 2, 0, 5};
+ 
+        System.out.println("Scegli un'opzione:");
+        System.out.println("1. Cifra un testo");
+        System.out.println("2. Decifra un testo");
+        System.out.print("Scelta: ");
+        int scelta = scanner.nextInt();
+        scanner.nextLine();
+ 
+        if (scelta == 1) {
+            System.out.print("Inserisci un testo da cifrare: ");
+            String testo = scanner.nextLine().toLowerCase();
+            int length = testo.length();
+ 
+            int[] vettore_1 = new int[length * 2];
+            int k = 0;
+            for (int i = 0; i < length; i++) {
+                boolean trovato = false;
+                for (int e = 0; e < 5 && !trovato; e++) {
+                    for (int j = 0; j < 5 && !trovato; j++) {
+                        if (testo.charAt(i) == matrix[e][j]) {
+                            vettore_1[k] = e;
+                            vettore_1[k + 1] = j;
+                            k += 2;
+                            trovato = true;
+                        }
+                    }
+                }
+            }
+ 
+ 
+            int numRighe = (int) Math.ceil((double) k / 6);
+            int[][] matrix_1 = new int[numRighe][6];
+ 
+            for (int i = 0; i < numRighe; i++) {
+                for (int e = 0; e < 6; e++) {
+                    matrix_1[i][e] = -1;
+                }
+            }
+ 
+            int f = 0;
+            for (int i = 0; i < numRighe; i++) {
+                for (int e = 0; e < 6; e++) {
+                    if (f < k) {
+                        matrix_1[i][e] = vettore_1[f];
+                        f++;
+                    }
+                }
+            }
+ 
+            System.out.print("Testo cifrato: ");
+            for (int colonna : ordineColonne) {
+                for (int i = 0; i < numRighe; i++) {
+                    int valore = matrix_1[i][colonna];
+                    if (valore == -1) {
+                        break;
+                    }
+                    System.out.print(LETTERE.charAt(valore));
+                }
+            }
+            System.out.println();
+ 
+        } else if (scelta == 2) {
+            System.out.print("Inserisci il testo cifrato da decodificare: ");
+            String cifrato = scanner.nextLine().toUpperCase().replaceAll("\\s", "");
+            int lenCifrato = cifrato.length();
+ 
+            for (int i = 0; i < lenCifrato; i++) {
+                if (LETTERE.indexOf(cifrato.charAt(i)) == -1) {
+                    System.out.println("Testo cifrato non valido: usa solo le lettere A, D, F, M, X.");
+                    return;
+                }
+            }
+ 
+            int numRighe = (int) Math.ceil((double) lenCifrato / 6);
+            int resto = lenCifrato % 6;
+            int[][] matrix_1 = new int[numRighe][6];
+ 
+            for (int i = 0; i < numRighe; i++) {
+                for (int e = 0; e < 6; e++) {
+                    matrix_1[i][e] = -1;
+                }
+            }
+ 
+            int indiceTesto = 0;
+            for (int colonna : ordineColonne) {
+                int righeColonna = (resto == 0 || colonna < resto) ? numRighe : numRighe - 1;
+ 
+                for (int i = 0; i < righeColonna; i++) {
+                    matrix_1[i][colonna] = LETTERE.indexOf(cifrato.charAt(indiceTesto));
+                    indiceTesto++;
+                }
+            }
+ 
+            int[] vettore_1 = new int[numRighe * 6];
+            int contatoreVettore = 0;
+ 
+            for (int i = 0; i < numRighe; i++) {
+                for (int e = 0; e < 6; e++) {
+                    if (matrix_1[i][e] != -1) {
+                        vettore_1[contatoreVettore] = matrix_1[i][e];
+                        contatoreVettore++;
+                    }
+                }
+            }
+ 
+            System.out.print("Testo decifrato: ");
+            for (int i = 0; i + 1 < contatoreVettore; i += 2) {
+                int riga = vettore_1[i];
+                int colonna = vettore_1[i + 1];
+                System.out.print(matrix[riga][colonna]);
+            }
+            System.out.println();
+ 
+        } else {
+            System.out.println("Opzione non valida.");
+        }
+    }
+}
